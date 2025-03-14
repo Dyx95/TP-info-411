@@ -1,15 +1,3 @@
-<?php
-// Example: Redirect users based on a condition
-$loggedIn = false; // Example condition, e.g., check a session or database value
-
-if ($loggedIn) {
-    header("Location: index.php");
-} else {
-    header("Location: connect.php");
-}
-exit();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
