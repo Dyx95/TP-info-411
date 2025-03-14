@@ -1,3 +1,15 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-style: none;
+}
+
 body{
     background-color: blue;
+}
+
+div{
+    display: flex;
+    align-content: center;
+    align-items: center;
 }
