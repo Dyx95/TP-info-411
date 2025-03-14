@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Bienvenue JOUEUR</title>
     <link rel="icon" href="img/homer singe.jpg" type="image/x-icon">
-    <link rel="stylesheet" href="css/connect.css">
+    <link rel="stylesheet" href="/css/connect.css">
 </head>
 <body>
     <div class="form-container">
