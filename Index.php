@@ -8,6 +8,7 @@ if ($loggedIn) {
     header("Location: connect.php");
 }
 exit();
+
 ?>
 
 <!DOCTYPE html>
