@@ -1,11 +1,24 @@
-const container = document.getElementById('boite');
-const registerBtn = document.getElementById('register');
-const loginBtn = document.getElementById('login');
+let tabs = document.querySelectorAll(".tab-link:not(.desactive)");
 
-registerBtn.addEventListener('click', () => {
-    container.classList.add("active");
+tabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    unSelectAll();
+    tab.classList.add("active");
+    let ref = tab.getAttribute("data-ref");
+    document
+      .querySelector(`.tab-body[data-id="${ref}"]`)
+      .classList.add("active");
+  });
 });
 
-loginBtn.addEventListener('click', () => {
-    container.classList.remove("active");
-});
+function unSelectAll() {
+  tabs.forEach((tab) => {
+    tab.classList.remove("active");
+  });
+  let tabbodies = document.querySelectorAll(".tab-body");
+  tabbodies.forEach((tab) => {
+    tab.classList.remove("active");
+  });
+}
+
+document.querySelector(".tab-link.active").click();

@@ -1,193 +1,133 @@
-*{
-    margin: 0;
-    padding: 0;
+* {
     box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
-}
-
-body {
-    background-image: url("mars_2.jpg");
-    background-size: cover;
+  }
+  
+  body {
+    margin: 0;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     height: 100vh;
-}
-.boite{
-    background-color: #fff;
+    background-color: #0a122a; /* Bleu très sombre pour un fond mystérieux */
+  }
+  
+  .container {
+    position: relative;
+    width: 420px;
+    min-height: 490px;
+    height: auto;
+    max-height: 520px;
+    background-color: #101835; /* Bleu nuit pour le conteneur principal */
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: "Quicksand", sans-serif;
+    box-shadow: 0 5px 15px rgba(0, 255, 255, 0.2); /* Éclat néon cyan */
+  }
+  
+  .tab-body {
+    position: relative;
+    display: none;
+    height: auto;
+    max-height: 320px;
+    padding: 15% 5%;
+    margin-top: 20%;
+    background-color: #18264a; /* Bleu sombre intense pour les onglets */
+    color: #5bd1ff; /* Texte bleu ciel lumineux */
+    box-shadow: 0px 5px 15px rgba(91, 209, 255, 0.3); /* Lueur néon légère */
     border-radius: 30px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
-    position: relative;
-    overflow: hidden;
-    width: 768px;
-    max-width: 100%;
-    min-height: 480px;
-}
-
-.boite p{
-    font-size: 14px;
-    line-height: 20px;
-    letter-spacing: 0.3px;
+    font-size: 1rem;
+  }
+  .tab-body.active {
+    display: block;
+  }
+  
+  .row {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #5bd1ff; /* Ligne néon bleu ciel */
+    padding: 1.8% 0;
     margin: 20px 0;
-}
-
-.boite span{
-    font-size: 12px;
-}
-
-.boite a{
-    color: #333;
-    font-size: 13px;
-    text-decoration: none;
-    margin: 15px 0 10px;
-}
-
-.boite button{
-    background-color: #f7a26d;
-    color: #fff;
-    font-size: 12px;
-    padding: 10px 45px;
-    border: 1px solid transparent;
-    border-radius: 8px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    margin-top: 10px;
-    cursor: pointer;
-}
-
-.boite button.hidden{
-    background-color: transparent;
-    border-color: #fff;
-}
-
-.boite form{
-    background-color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0 40px;
-    height: 100%;
-}
-
-.boite input{
-    background-color: #eee;
-    border: none;
-    margin: 8px 0;
-    padding: 10px 15px;
-    font-size: 13px;
-    border-radius: 8px;
+  }
+  
+  .row .input {
     width: 100%;
+    border: none;
     outline: none;
-}
-
-.formulaire{
+    color: #5bd1ff; /* Texte néon bleu ciel */
+    font-weight: 550;
+    background-color: #101835; /* Fond sombre des champs */
+    border-radius: 5px;
+    padding: 5px 10px;
+  }
+  .input::placeholder {
+    color: #418cb3; /* Placeholder bleu ciel atténué */
+  }
+  
+  .link {
+    display: inline-block;
+    font-size: 0.8em;
+    width: 100%;
+    text-decoration: none;
+    color: #5bd1ff; /* Lien lumineux */
+    text-align: right;
+  }
+  .link:hover {
+    text-decoration: underline;
+    color: #82eaff; /* Accent néon au survol */
+  }
+  
+  .btn {
     position: absolute;
-    top: 0;
-    height: 100%;
-    transition: all 0.6s ease-in-out;
-}
-
-.connexion{
-    left: 0;
-    width: 50%;
-    z-index: 2;
-}
-
-.boite.active .connexion{
-    transform: translateX(100%);
-}
-
-.inscription{
-    left: 0;
-    width: 50%;
-    opacity: 0;
-    z-index: 1;
-}
-
-.boite.active .inscription{
-    transform: translateX(100%);
-    opacity: 1;
-    z-index: 5;
-    animation: move 0.6s;
-}
-
-@keyframes move{
-    0%, 49.99%{
-        opacity: 0;
-        z-index: 1;
-    }
-    50%, 100%{
-        opacity: 1;
-        z-index: 5;
-    }
-}
-
-
-.bascule-boite{
-    position: absolute;
-    top: 0;
     left: 50%;
-    width: 50%;
-    height: 100%;
-    overflow: hidden;
-    transition: all 0.6s ease-in-out;
-    border-radius: 150px 0 0 100px;
-    z-index: 1000;
-}
-
-.boite.active .bascule-boite{
-    transform: translateX(-100%);
-    border-radius: 0 150px 100px 0;
-}
-
-.bascule{
-    background-color: #f7a26d;
-    height: 100%;
-    background: linear-gradient(to right, #e8c9b5, #f7a26d);
+    bottom: 0;
+    transform: translate(-50%, 50%);
+    width: 120px;
+    height: 45px;
+    border-radius: 50px;
+    background-color: #1e90ff; /* Bouton bleu lumineux */
+    border: none;
+    outline: none;
     color: #fff;
-    position: relative;
-    left: -100%;
-    height: 100%;
-    width: 200%;
-    transform: translateX(0);
-    transition: all 0.6s ease-in-out;
-}
-
-.boite.active .bascule{
-    transform: translateX(50%);
-}
-
-.panneau{
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(30, 144, 255, 0.6); /* Effet lumineux néon */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .btn:hover {
+    background-color: #469cff; /* Ton plus lumineux au survol */
+    box-shadow: 0 8px 20px rgba(70, 156, 255, 0.8);
+  }
+  
+  .tab-footer {
     position: absolute;
-    width: 50%;
-    height: 100%;
+    bottom: 5%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    height: 30px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0 30px;
-    text-align: center;
-    top: 0;
-    transform: translateX(0);
-    transition: all 0.6s ease-in-out;
-}
-
-.bascule-gauche{
-    transform: translateX(-200%);
-}
-
-.boite.active .bascule-gauche{
-    transform: translateX(0);
-}
-
-.bascule-droit{
-    right: 0;
-    transform: translateX(0);
-}
-
-.boite.active .bascule-droit{
-    transform: translateX(200%);
-}
-
+  }
+  
+  .tab-link {
+    text-decoration: none;
+    color: #5bd1ff; /* Couleur néon des onglets */
+    margin: 0 3%;
+  }
+  .tab-link.active {
+    font-weight: bold; /* Texte en gras pour onglet actif */
+    text-shadow: 0 0 5px #5bd1ff; /* Lueur légère sur l'onglet actif */
+  }
+  
+  @media screen and (max-width: 520px) {
+    .container {
+      width: 80%;
+      min-width: 380px;
+      min-height: 490px;
+    }
+    .tab-body {
+      width: 100%;
+      padding: 15% 5%;
+      margin-top: 25%;
+      max-height: 420px;
+    }
+  }

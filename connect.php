@@ -9,38 +9,39 @@
 </head>
 
 <body>
-    <div class="boite" id="boite">
-        <div class="formulaire inscription">
-            <form method="POST" action="login.php">
-                <h1>Créer compte</h1>
-                <input type="text" id="nom1" name="nom1" placeholder="Nom">
-                <input type="email" id="email1" name="email1" placeholder="Email">
-                <input type="password" id="mdp1" name="mdp1" placeholder="Mot de passe">
-                <button type="submit">S'incrire</button>
+
+    <div class="container">
+        <div class="tab-body" data-id="connexion">
+            <form>
+                <div class="row">
+                    <input type="email" class="input" placeholder="Adresse Mail">
+                </div>
+                <div class="row">
+                    <input placeholder="Mot de Passe" type="password" class="input">
+                </div>
+                <a href="#" class="link">Mot de passe oublié ?</a>
+                <button class="btn" type="button">Connexion</button>
             </form>
         </div>
-        <div class="formulaire connexion">
-            <form method="POST" action="login.php">
-                <h1>Connexion</h1>
-                <input type="email" id="email2" name="email2" placeholder="Email">
-                <input type="password" id="mdp2" name="mdp2" placeholder="Mot de passe">
-                <a href="#">Mot de passe oublié ?</a>
-                <button type="submit">Connectez-vous</button>
+
+        <div class="tab-body" data-id="inscription">
+            <form>
+                <div class="row">
+                    <input type="email" class="input" placeholder="Adresse Mail">
+                </div>
+                <div class="row">
+                    <input type="password" class="input" placeholder="Mot de Passe">
+                </div>
+                <div class="row">
+                    <input type="password" class="input" placeholder="Confirmer Mot de Passe">
+                </div>
+                <button class="btn" type="button">Inscription</button>
             </form>
         </div>
-        <div class="bascule-boite">
-            <div class="bascule">
-                <div class="panneau bascule-gauche">
-                    <h1>Bienvenue</h1>
-                    <p>Déjà un compte ? Connectez-vous</p>
-                    <button class="cache" id="login">Connectez-vous</button>
-                </div>
-                <div class="panneau bascule-droit">
-                    <h1>Bonjour!</h1>
-                    <p>Première fois sur notre site ? Enregistrez-vous</p>
-                    <button class="cache" id="register">Inscription</button>
-                </div>
-            </div>
+
+        <div class="tab-footer">
+            <a class="tab-link active" data-ref="connexion" href="javascript:void(0)">Connexion</a>
+            <a class="tab-link" data-ref="inscription" href="javascript:void(0)">Inscription</a>
         </div>
     </div>
 
