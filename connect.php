@@ -73,8 +73,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="login2.css">
-    <title>M.A.R.S</title>
+    <link rel="stylesheet" href="./cs/connect.css">
+    <title>Bienvenue JOUEUR</title>
 </head>
 
 <body>
@@ -113,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
 
-    <script src="login.js"></script>
+    <script src="./js/connect.js"></script>
 </body>
 </html>
 
