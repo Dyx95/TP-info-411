@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tableau de Bord Solo Leveling</title>
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
     <div class="container">
@@ -31,6 +31,6 @@
             </div>
         </section>
     </div>
-    <script src="./js/script.js"></script>
+    <script src="js/index.js"></script>
 </body>
 </html>
