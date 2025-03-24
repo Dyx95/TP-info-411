@@ -1,106 +1,123 @@
-/* Style général */
-body {
-    background: #0d1b2a; /* Bleu sombre */
-    color: #e0e1dd; /* Gris clair pour une bonne lisibilité */
-    font-family: 'Arial', sans-serif;
+/* Réinitialisation globale */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
+body {
+    font-family: 'Arial', sans-serif;
+    background: #0d1b2a; /* Bleu sombre */
+    color: #e0e1dd; /* Texte gris clair */
+}
+
+/* Conteneur principal */
 .container {
     width: 90%;
     margin: 0 auto;
     padding: 20px;
 }
 
-header {
-    text-align: center;
+/* En-tête */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #142c44; /* Bleu sombre */
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.logo img {
+    width: 50px;
+    height: auto;
+}
+
+.player-info {
+    display: flex;
+    align-items: center;
+}
+
+.player-name {
+    margin-right: 10px;
+    color: #3a86ff; /* Bleu vif */
+}
+
+.profile-btn {
+    background: #3a86ff;
+    color: #0d1b2a;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.profile-btn:hover {
+    background: #00bbf9;
+}
+
+/* Profil flottant */
+.profile-popup {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background: #1e3a58;
     padding: 20px;
-}
-
-h1, h2, h3 {
-    color: #3a86ff; /* Bleu vif pour les titres */
-}
-
-a {
-    color: #00bbf9; /* Bleu cyan pour les liens */
-    text-decoration: none;
-}
-
-/* Barre de progression */
-.progress-bar {
-    background: #142c44; /* Bleu très sombre */
     border-radius: 10px;
-    width: 100%;
-    height: 20px;
-    margin-top: 10px;
+    box-shadow: 0 0 10px #3a86ff;
+    display: none; /* Caché par défaut */
 }
 
-.progress {
-    background: #3a86ff; /* Bleu vif pour la progression */
-    height: 100%;
-    border-radius: 10px;
-    text-align: center;
-    color: #0d1b2a; /* Texte foncé pour le contraste */
-    font-weight: bold;
-}
-
-/* Missions */
-.missions {
-    margin-top: 20px;
-    padding: 20px;
-    background: #142c44; /* Fond sombre bleu */
-    border-radius: 10px;
-}
-
-.mission-type ul {
-    list-style: none;
+.profile-popup ul {
+    list-style-type: none;
     padding: 0;
 }
 
-.mission-type li {
-    padding: 10px;
-    background: #1e3a58; /* Bleu moyen pour les cartes de mission */
-    margin-bottom: 5px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+.hidden {
+    display: none;
 }
 
-.mission-type li:hover {
-    background: #3a86ff; /* Bleu vif au survol */
-    transform: translateY(-2px); /* Légère animation au survol */
+/* Barre d'expérience */
+.experience-section {
+    margin-top: 20px;
+    text-align: center;
 }
 
-input[type="checkbox"] {
-    accent-color: #00bbf9; /* Bleu cyan pour les cases à cocher */
-    margin-right: 10px;
+.experience-bar {
+    background: #142c44; /* Fond de la barre */
+    border-radius: 10px;
+    height: 20px;
+    width: 100%;
+    margin: 10px auto;
+    overflow: hidden;
+    border: 2px solid #3a86ff;
 }
 
-label {
-    cursor: pointer;
-    color: #e0e1dd; /* Texte gris clair */
+.experience-progress {
+    background: #3a86ff; /* Progression en bleu vif */
+    height: 100%;
+    width: 0%; /* Début à zéro */
+    border-radius: 10px;
+    transition: width 0.5s ease;
 }
 
-.completed label {
-    text-decoration: line-through;
-    color: #8ecae6; /* Bleu pâle pour les missions accomplies */
+/* Missions */
+.mission {
+    background: #142c44; /* Fond sombre pour les missions */
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #1e3a58;
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-/* Animation */
-@keyframes glow {
-    0% {
-        box-shadow: 0 0 5px #3a86ff;
-    }
-    50% {
-        box-shadow: 0 0 20px #3a86ff;
-    }
-    100% {
-        box-shadow: 0 0 5px #3a86ff;
-    }
+.mission:hover {
+    transform: translateY(-5px);
+    background: #1e3a58;
 }
 
-.progress {
-    animation: glow 2s infinite; /* Effet lumineux animé pour la barre de progression */
+.special {
+    background: #3a86ff; /* Bleu vif pour la mission spéciale */
+    color: #0d1b2a; /* Texte foncé pour contraste */
 }

@@ -1,70 +1,59 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const dailyMissionsContainer = document.getElementById('daily-missions');
-    const specialMissionContainer = document.getElementById('special-mission');
-    const progress = document.querySelector('.progress');
+    const dailyCheckboxes = document.querySelectorAll('.daily-checkbox'); // Cases des missions quotidiennes
+    const specialCheckbox = document.querySelector('.special-checkbox'); // Case de la mission spéciale
+    const experienceBar = document.querySelector('.experience-progress'); // Barre d'expérience
+    const playerExp = document.getElementById('player-exp'); // Texte affichant l'expérience
+    const playerLevel = document.getElementById('player-level'); // Texte affichant le niveau
 
-    let completedMissions = 0;
+    let currentExp = 0; // Expérience actuelle
+    let currentLevel = 1; // Niveau actuel
+    const expPerLevel = 100; // Expérience nécessaire pour monter de niveau
 
-    // Données des missions (elles peuvent venir d'une base de données)
-    const allMissions = {
-        daily: [
-            "Faire 50 pompes",
-            "Courir 3 kilomètres",
-            "Pratiquer une séance de yoga",
-            "Méditer pendant 10 minutes",
-            "Boire 2 litres d'eau"
-        ],
-        special: [
-            "Participer à un tournoi local",
-            "Apprendre une compétence en une journée",
-            "Réaliser un défi avancé comme un marathon"
-        ]
+    // Fonction pour mettre à jour la barre d'expérience et le niveau
+    const updateExperience = () => {
+        // Augmentation de niveau si l'expérience dépasse la limite
+        while (currentExp >= expPerLevel) {
+            currentExp -= expPerLevel;
+            currentLevel++;
+        }
+
+        // Mettre à jour la barre visuelle
+        const progressPercentage = (currentExp / expPerLevel) * 100;
+        experienceBar.style.width = `${progressPercentage}%`;
+
+        // Mise à jour des textes affichés
+        playerExp.textContent = currentExp;
+        playerLevel.textContent = currentLevel;
     };
 
-    const totalMissions = 3; // 2 quotidiennes + 1 spéciale
-
-    // Sélection des missions
-    const dailyMissions = allMissions.daily.sort(() => Math.random() - 0.5).slice(0, 2);
-    const specialMission = allMissions.special[Math.floor(Math.random() * allMissions.special.length)];
-
-    // Affichage des missions quotidiennes
-    dailyMissionsContainer.innerHTML = `
-        <h3>Missions Quotidiennes</h3>
-        <ul>
-            ${dailyMissions.map(mission => `<li><input type="checkbox" data-type="daily"><label>${mission}</label></li>`).join('')}
-        </ul>
-    `;
-
-    // Affichage de la mission spéciale
-    specialMissionContainer.innerHTML = `
-        <h3>Mission Spéciale</h3>
-        <ul>
-            <li><input type="checkbox" data-type="special"><label>${specialMission}</label></li>
-        </ul>
-    `;
-
-    // Fonction de mise à jour de la barre de progression
-    const updateProgress = () => {
-        const percentage = Math.round((completedMissions / totalMissions) * 100);
-        progress.style.width = `${percentage}%`;
-        progress.textContent = `${percentage}%`;
-    };
-
-    // Écoute des changements sur les cases à cocher
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    checkboxes.forEach(checkbox => {
+    // Gestion des missions quotidiennes
+    dailyCheckboxes.forEach((checkbox) => {
         checkbox.addEventListener('change', () => {
+            const expToAdd = parseInt(checkbox.dataset.exp, 10);
+
             if (checkbox.checked) {
-                completedMissions++;
-                checkbox.parentElement.classList.add('completed');
+                currentExp += expToAdd; // Ajouter l'expérience lorsque la mission est cochée
             } else {
-                completedMissions--;
-                checkbox.parentElement.classList.remove('completed');
+                currentExp -= expToAdd; // Retirer l'expérience lorsque la mission est décochée
             }
-            updateProgress();
+
+            updateExperience(); // Met à jour la progression
         });
     });
 
-    // Initialisation de la barre de progression
-    updateProgress();
+    // Gestion de la mission spéciale
+    specialCheckbox.addEventListener('change', () => {
+        const expToAdd = parseInt(specialCheckbox.dataset.exp, 10);
+
+        if (specialCheckbox.checked) {
+            currentExp += expToAdd; // Ajouter l'expérience lorsque la mission spéciale est cochée
+        } else {
+            currentExp -= expToAdd; // Retirer l'expérience si décochée
+        }
+
+        updateExperience(); // Met à jour la progression
+    });
+
+    // Initialisation au chargement
+    updateExperience();
 });
