@@ -1,21 +1,106 @@
-*{
-    padding: 0;
+/* Style général */
+body {
+    background: #0d1b2a; /* Bleu sombre */
+    color: #e0e1dd; /* Gris clair pour une bonne lisibilité */
+    font-family: 'Arial', sans-serif;
     margin: 0;
-    font-style: none;
+    padding: 0;
 }
 
-/* body{
-    background-color: blue;
-} */
+.container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+}
 
-div {
+header {
+    text-align: center;
+    padding: 20px;
+}
+
+h1, h2, h3 {
+    color: #3a86ff; /* Bleu vif pour les titres */
+}
+
+a {
+    color: #00bbf9; /* Bleu cyan pour les liens */
+    text-decoration: none;
+}
+
+/* Barre de progression */
+.progress-bar {
+    background: #142c44; /* Bleu très sombre */
+    border-radius: 10px;
+    width: 100%;
+    height: 20px;
+    margin-top: 10px;
+}
+
+.progress {
+    background: #3a86ff; /* Bleu vif pour la progression */
+    height: 100%;
+    border-radius: 10px;
+    text-align: center;
+    color: #0d1b2a; /* Texte foncé pour le contraste */
+    font-weight: bold;
+}
+
+/* Missions */
+.missions {
+    margin-top: 20px;
+    padding: 20px;
+    background: #142c44; /* Fond sombre bleu */
+    border-radius: 10px;
+}
+
+.mission-type ul {
+    list-style: none;
+    padding: 0;
+}
+
+.mission-type li {
+    padding: 10px;
+    background: #1e3a58; /* Bleu moyen pour les cartes de mission */
+    margin-bottom: 5px;
+    border-radius: 5px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    height: 100vh;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-img {
-    max-width: 100%;
-    height: auto;
+.mission-type li:hover {
+    background: #3a86ff; /* Bleu vif au survol */
+    transform: translateY(-2px); /* Légère animation au survol */
+}
+
+input[type="checkbox"] {
+    accent-color: #00bbf9; /* Bleu cyan pour les cases à cocher */
+    margin-right: 10px;
+}
+
+label {
+    cursor: pointer;
+    color: #e0e1dd; /* Texte gris clair */
+}
+
+.completed label {
+    text-decoration: line-through;
+    color: #8ecae6; /* Bleu pâle pour les missions accomplies */
+}
+
+/* Animation */
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 5px #3a86ff;
+    }
+    50% {
+        box-shadow: 0 0 20px #3a86ff;
+    }
+    100% {
+        box-shadow: 0 0 5px #3a86ff;
+    }
+}
+
+.progress {
+    animation: glow 2s infinite; /* Effet lumineux animé pour la barre de progression */
 }
