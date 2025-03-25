@@ -1,15 +1,16 @@
 <?php
-	    define ('SERVEUR_BD','localhost');
-	    define ('LOGIN_BD','root');
-	    define ('PASS_BD','');
-        define ('NOM_BD','test'); 
+	    define ('MARIADB_DATABASE','localhost');
+	    define ('MARIADB_USER','root');
+	    define ('MARIADB_PASSWORD','root');
+		define ('NOM_BD','test'); 
+		define ('MARIADB_ROOT_PASSWORD', '');
         
         require('../connect.php');
 	
-	$CONNEXION = mysqli_connect (SERVEUR_BD, LOGIN_BD, PASS_BD);
+	$CONNEXION = mysqli_connect (MARIADB_DATABASE, MARIADB_USER, MARIADB_PASSWORD);
 	//Connexion au serveur de bases de données
 	if (mysqli_connect_errno()) {
-		echo 'Désolé, connexion au serveur ' . SERVEUR_BD . ' impossible, '. mysqli_connect_error(), "\n";
+		echo 'Désolé, connexion au serveur ' . MARIADB_DATABASE . ' impossible, '. mysqli_connect_error(), "\n";
     	exit();
 	}
 	// Sélection de la base de données
