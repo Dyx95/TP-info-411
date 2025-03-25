@@ -1,8 +1,5 @@
 <?php
-	     define ('SERVEUR_BD','localhost');
-		 define ('LOGIN_BD','root');
-		 define ('PASS_BD','');
-		 define ('NOM_BD','test'); 
+require('./include/connect.php');
 	
 		$CONNEXION = mysqli_connect (SERVEUR_BD, LOGIN_BD, PASS_BD);
 		//Connexion au serveur de bases de données
