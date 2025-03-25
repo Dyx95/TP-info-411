@@ -1,4 +1,4 @@
-<?php
+<?php 
 include("./include/connexion.php");
 include("./include/crud_utilisateurs.php");
 
@@ -6,7 +6,7 @@ session_start();
 // Vérifie si l'utilisateur est déjà connecté
 if (isset($_SESSION['email'])) {
     // Sinon, redirige vers la page de profil normale
-    header("Location: ./index.php");
+    header("Location: index.php");
     exit();
 }
 
@@ -22,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit();
         }
 
+        // Vérifier si l'email existe déjà dans la base
         $checkEmail = $conn->prepare("SELECT * FROM Utilisateurs WHERE email = ?");
         $checkEmail->bind_param("s", $email);
         $checkEmail->execute();
@@ -33,11 +34,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Hachage du mot de passe avant insertion
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            $insertQuery = $conn->prepare("INSERT INTO Utilisateurs (nom_utilisateur, email, mot_de_passe) VALUES (?, ?, ?)");
-            $insertQuery->bind_param("sss", $nom, $email, $hashedPassword);
+            // On insère un utilisateur avec les valeurs disponibles, incluant le niveau et la date de création
+            // Le niveau est initialisé à un niveau par défaut (par exemple, "membre") et la date de création à la date actuelle
+            $niveau = "membre"; // Niveau par défaut
+            $date_creation = date("Y-m-d H:i:s"); // Date de création actuelle
+
+            $insertQuery = $conn->prepare("INSERT INTO Utilisateurs (email, mot_de_passe, niveau, date_creation) VALUES (?, ?, ?, ?)");
+            $insertQuery->bind_param("ssss", $email, $hashedPassword, $niveau, $date_creation);
 
             if ($insertQuery->execute()) {
-                header("Location: ./index.php");
+                header("Location: index.php");
                 exit();
             } else {
                 echo "Erreur : " . $conn->error;
@@ -48,6 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $email = htmlspecialchars($_POST['email2']);
         $password = $_POST['mdp2'];
 
+        // Récupérer les données de l'utilisateur en fonction de l'email
         $sql = $conn->prepare("SELECT * FROM Utilisateurs WHERE email = ?");
         $sql->bind_param("s", $email);
         $sql->execute();
@@ -57,9 +64,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $row = $result->fetch_assoc();
             // Vérification du mot de passe avec password_verify
             if (password_verify($password, $row['mot_de_passe'])) {
+                // Si la connexion est réussie, on initialise les sessions
                 $_SESSION['email'] = $row['email'];
-                $_SESSION['nom_utilisateur'] = $row['nom_utilisateur'];
-                header("Location: ./index.php");
+                $_SESSION['niveau'] = $row['niveau'];  // On récupère le niveau
+                $_SESSION['date_creation'] = $row['date_creation'];  // Et la date de création
+                header("Location: index.php");
                 exit();
             } else {
                 echo "Email ou mot de passe incorrect.";
