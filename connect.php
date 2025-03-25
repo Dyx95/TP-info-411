@@ -1,17 +1,12 @@
 <?php
-include("../db/db_connect.php");
-include("../Crud/crud_utilisateurs.php");
+include("./include/connexion.php");
+include("./include/crud_utilisateurs.php");
 
 session_start();
 // Vérifie si l'utilisateur est déjà connecté
 if (isset($_SESSION['email'])) {
-    // Si l'utilisateur est administrateur, redirige vers la page d'administration
-    if ($_SESSION['email'] == 'admin@admin.com') {
-        header("Location: ../profil/admin_profil.php");
-        exit();
-    }
     // Sinon, redirige vers la page de profil normale
-    header("Location: ../profil/profil.php");
+    header("Location: ./index.php");
     exit();
 }
 
@@ -34,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $insertQuery->bind_param("sss", $nom, $email, $password);
 
             if ($insertQuery->execute() === TRUE) {
-                header("Location: ../index.php");
+                header("Location: ./index.php");
                 exit();
             } else {
                 echo "Error: " . $conn->error;
@@ -55,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($password === $row['mot_de_passe']) { // Comparaison directe sans hachage
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['nom_utilisateur'] = $row['nom_utilisateur'];
-                header("Location: ../index.php");
+                header("Location: ./index.php");
                 exit();
             } else {
                 echo "Incorrect Email or Password";
