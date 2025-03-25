@@ -11,11 +11,16 @@ if (isset($_SESSION['email'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (isset($_POST['nom1']) && isset($_POST['email1']) && isset($_POST['mdp1'])) {
+    if (isset($_POST['nom1']) && isset($_POST['email1']) && isset($_POST['mdp1']) && isset($_POST['mdp1_confirm'])) {
         // Inscription
-        $nom = $_POST['nom1'];
-        $email = $_POST['email1'];
-        $password = $_POST['mdp1']; // Pas de hachage pour le mot de passe
+        $nom = htmlspecialchars($_POST['nom1']);
+        $email = htmlspecialchars($_POST['email1']);
+        $password = $_POST['mdp1']; // Mot de passe non haché ici
+
+        if ($password !== $_POST['mdp1_confirm']) {
+            echo "Les mots de passe ne correspondent pas.";
+            exit();
+        }
 
         $checkEmail = $conn->prepare("SELECT * FROM Utilisateurs WHERE email = ?");
         $checkEmail->bind_param("s", $email);
@@ -23,21 +28,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $result = $checkEmail->get_result();
 
         if ($result->num_rows > 0) {
-            echo "Email Address Already Exists!";
+            echo "L'adresse email existe déjà !";
         } else {
-            $insertQuery = $conn->prepare("INSERT INTO Utilisateurs (nom_utilisateur, email, mot_de_passe) VALUES (?, ?, ?)");
-            $insertQuery->bind_param("sss", $nom, $email, $password);
+            // Hachage du mot de passe avant insertion
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            if ($insertQuery->execute() === TRUE) {
+            $insertQuery = $conn->prepare("INSERT INTO Utilisateurs (nom_utilisateur, email, mot_de_passe) VALUES (?, ?, ?)");
+            $insertQuery->bind_param("sss", $nom, $email, $hashedPassword);
+
+            if ($insertQuery->execute()) {
                 header("Location: ./index.php");
                 exit();
             } else {
-                echo "Error: " . $conn->error;
+                echo "Erreur : " . $conn->error;
             }
         }
     } elseif (isset($_POST['email2']) && isset($_POST['mdp2'])) {
         // Connexion
-        $email = $_POST['email2'];
+        $email = htmlspecialchars($_POST['email2']);
         $password = $_POST['mdp2'];
 
         $sql = $conn->prepare("SELECT * FROM Utilisateurs WHERE email = ?");
@@ -47,16 +55,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
-            if ($password === $row['mot_de_passe']) { // Comparaison directe sans hachage
+            // Vérification du mot de passe avec password_verify
+            if (password_verify($password, $row['mot_de_passe'])) {
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['nom_utilisateur'] = $row['nom_utilisateur'];
                 header("Location: ./index.php");
                 exit();
             } else {
-                echo "Incorrect Email or Password";
+                echo "Email ou mot de passe incorrect.";
             }
         } else {
-            echo "Not Found, Incorrect Email or Password";
+            echo "Utilisateur non trouvé.";
         }
     }
 }
@@ -76,30 +85,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <div class="container">
         <div class="tab-body" data-id="connexion">
-            <form>
+            <form method="POST" action="">
                 <div class="row">
-                    <input type="email" class="input" placeholder="Adresse Mail">
+                    <input type="email" name="email2" class="input" placeholder="Adresse Mail" required>
                 </div>
                 <div class="row">
-                    <input placeholder="Mot de Passe" type="password" class="input">
+                    <input type="password" name="mdp2" class="input" placeholder="Mot de Passe" required>
                 </div>
                 <a href="#" class="link">Mot de passe oublié ?</a>
-                <button class="btn" type="button">Connexion</button>
+                <button class="btn" type="submit">Connexion</button>
             </form>
         </div>
 
         <div class="tab-body" data-id="inscription">
-            <form>
+            <form method="POST" action="">
                 <div class="row">
-                    <input type="email" class="input" placeholder="Adresse Mail">
+                    <input type="text" name="nom1" class="input" placeholder="Nom d'utilisateur" required>
                 </div>
                 <div class="row">
-                    <input type="password" class="input" placeholder="Mot de Passe">
+                    <input type="email" name="email1" class="input" placeholder="Adresse Mail" required>
                 </div>
                 <div class="row">
-                    <input type="password" class="input" placeholder="Confirmer Mot de Passe">
+                    <input type="password" name="mdp1" class="input" placeholder="Mot de Passe" required>
                 </div>
-                <button class="btn" type="button">Inscription</button>
+                <div class="row">
+                    <input type="password" name="mdp1_confirm" class="input" placeholder="Confirmer Mot de Passe" required>
+                </div>
+                <button class="btn" type="submit">Inscription</button>
             </form>
         </div>
 
