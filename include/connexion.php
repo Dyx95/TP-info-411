@@ -2,7 +2,6 @@
 	    define ('MARIADB_DATABASE','localhost');
 	    define ('MARIADB_USER','root');
 	    define ('MARIADB_PASSWORD','root');
-		define ('NOM_BD','test'); 
 		define ('MARIADB_ROOT_PASSWORD', '');
         
         require('../connect.php');
