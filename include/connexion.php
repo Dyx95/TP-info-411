@@ -1,9 +1,9 @@
 <?php
 // Définir les informations de connexion
 $host = 'localhost';  // ou l'adresse de votre serveur de base de données
-$dbname = 'jeu';
-$username = 'root';
-$password = '';
+$dbname = 'Jeu';
+$username = 'localhost';
+$password = 'root';
 
 // Connexion au serveur de base de données MySQL avec mysqli
 $conn = mysqli_connect($host, $username, $password, $dbname);

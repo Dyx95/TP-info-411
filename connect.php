@@ -6,7 +6,7 @@ session_start();
 // Vérifie si l'utilisateur est déjà connecté
 if (isset($_SESSION['email'])) {
     // Sinon, redirige vers la page de profil normale
-    header("Location: index.php");
+    header("Location: ./index.php");
     exit();
 }
 
@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         // Vérifier si l'email existe déjà dans la base
-        $checkEmail = $conn->prepare("SELECT * FROM Utilisateurs WHERE email = ?");
+        $checkEmail = $conn->prepare("SELECT * FROM 'Utilisateurs' WHERE email = ?");
         $checkEmail->bind_param("s", $email);
         $checkEmail->execute();
         $result = $checkEmail->get_result();
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $insertQuery->bind_param("ssss", $email, $hashedPassword, $niveau, $date_creation);
 
             if ($insertQuery->execute()) {
-                header("Location: index.php");
+                header("Location: ./index.php");
                 exit();
             } else {
                 echo "Erreur : " . $conn->error;
@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['niveau'] = $row['niveau'];  // On récupère le niveau
                 $_SESSION['date_creation'] = $row['date_creation'];  // Et la date de création
-                header("Location: index.php");
+                header("Location: ./index.php");
                 exit();
             } else {
                 echo "Email ou mot de passe incorrect.";
