@@ -12,6 +12,6 @@ RUN git clone https://github.com/Dyx95/TP-info-411.git html
 
 WORKDIR /var/www/html
 
-RUN cp connexion_docker.php connect.php
+RUN cp connexion.php.docker connexion.php
 
 EXPOSE 80
