@@ -1,3 +1,16 @@
+<?php
+include("./site/include/connect.php");
+
+session_start();
+
+// Vérifie si l'utilisateur est connecté
+if (!isset($_SESSION['Utilisateur'])) {
+    // Redirige vers la page de connexion
+    header('Location: connexion.php');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>

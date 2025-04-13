@@ -9,7 +9,7 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - /c/Users/andyl/OneDrive/Documents/université/S4/Info411/TP-info-411/site/sql:/docker-entrypoint-initdb.d
+      - /c/Users/andyl/OneDrive/Documents/université/S4/Info411/TP-info-411/sql:/docker-entrypoint-initdb.d
       - /c/Users/andyl/OneDrive/Documents/université/S4/Info411/TP-info-411/bd_data/:/var/lib/mysql/mariadb
     container_name: c_mariadb
   monapache:

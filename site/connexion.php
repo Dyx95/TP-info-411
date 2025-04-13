@@ -1,6 +1,6 @@
 <?php 
-include("./include/connect.php");
-include("./include/crud_utilisateurs.php");
+include("./site/include/connect.php");
+include("./site/include/crud_utilisateurs.php");
 
 session_start();
 // Vérifie si l'utilisateur est déjà connecté
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $insertQuery->bind_param("ssss", $email, $hashedPassword, $niveau, $date_creation);
 
             if ($insertQuery->execute()) {
-                header("Location: ./index.php");
+                header("Location: index.php");
                 exit();
             } else {
                 echo "Erreur : " . $conn->error;
@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['niveau'] = $row['niveau'];  // On récupère le niveau
                 $_SESSION['date_creation'] = $row['date_creation'];  // Et la date de création
-                header("Location: ./index.php");
+                header("Location: index.php");
                 exit();
             } else {
                 echo "Email ou mot de passe incorrect.";
