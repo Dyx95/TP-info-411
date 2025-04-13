@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $niveau = "membre"; // Niveau par défaut
             $date_creation = date("Y-m-d H:i:s"); // Date de création actuelle
 
-            $insertQuery = $conn->prepare("INSERT INTO Utilisateurs (email, mot_de_passe, niveau, date_creation) VALUES (?, ?, ?, ?)");
+            $insertQuery = $conn->prepare("INSERT INTO Utilisateur (email, mot_de_passe, niveau, date_creation) VALUES (?, ?, ?, ?)");
             $insertQuery->bind_param("ssss", $email, $hashedPassword, $niveau, $date_creation);
 
             if ($insertQuery->execute()) {
@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $password = $_POST['mdp2'];
 
         // Récupérer les données de l'utilisateur en fonction de l'email
-        $sql = $conn->prepare("SELECT * FROM Utilisateurs WHERE email = ?");
+        $sql = $conn->prepare("SELECT * FROM Utilisateur WHERE email = ?");
         $sql->bind_param("s", $email);
         $sql->execute();
         $result = $sql->get_result();

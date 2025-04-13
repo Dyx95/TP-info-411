@@ -1,0 +1,31 @@
+services:
+  mariadb:
+    image: mariadb
+    environment:
+      - MARIADB_ROOT_PASSWORD=root
+      - MARIADB_USER=andy
+      - MARIADB_PASSWORD=root
+      - MARIADB_DATABASE=Jeu
+    ports:
+      - 3306:3306
+    volumes:
+      - /c/Users/andyl/OneDrive/Documents/université/S4/Info411/TP-info-411/site/sql:/docker-entrypoint-initdb.d
+      - /c/Users/andyl/OneDrive/Documents/université/S4/Info411/TP-info-411/bd_data/:/var/lib/mysql/mariadb
+    container_name: c_mariadb
+  monapache:
+    image: apache
+    volumes:
+      - /c/Users/andyl/OneDrive/Documents/université/S4/Info411/TP-info-411/site:/var/www/html
+    ports:
+      - 80:80
+    container_name: c_monapache
+  monubuntu:
+    image: ubuntu
+    container_name: c_monubuntu
+  phpmyadmin:
+    image: phpmyadmin
+    environment:
+      - PMA_HOST=mariadb
+    ports:
+      - 8080:80
+    container_name: c_monphpmyadmin
