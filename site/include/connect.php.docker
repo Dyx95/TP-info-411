@@ -1,0 +1,25 @@
+<?php
+// Paramètres de connexion à la base de données MariaDB
+$host = 'localhost';          // Adresse du serveur (en général 'localhost' en local/Docker)
+$dbname = 'Jeu';              // Nom de la base de données
+$username = 'andy';           // Nom d'utilisateur défini dans MARIADB_USER
+$password = 'root';           // Mot de passe défini dans MARIADB_PASSWORD
+
+// Connexion à MariaDB avec mysqli
+$conn = mysqli_connect($host, $username, $password, $dbname);
+
+// Vérification de la connexion
+if (mysqli_connect_errno()) {
+    echo ' Connexion échouée : ' . mysqli_connect_error();
+    exit();  // Stoppe l'exécution du script
+}
+
+// Définir le charset pour éviter les problèmes d'encodage
+if (!mysqli_set_charset($conn, 'utf8')) {
+    echo 'Erreur lors du chargement de l\'encodage UTF-8 : ' . mysqli_error($conn);
+    exit();
+}
+
+// Connexion réussie
+// echo 'Connexion réussie à la base de données.';
+?>
