@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 include("./site/include/connect.php");
 
 session_start();
@@ -9,7 +9,7 @@ if (!isset($_SESSION['Utilisateur'])) {
     header('Location: connexion.php');
     exit();
 }
-?>
+?> -->
 
 <!DOCTYPE html>
 <html lang="fr">
