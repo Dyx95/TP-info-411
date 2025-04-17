@@ -2,10 +2,10 @@ services:
   mariadb:
     image: mariadb
     environment:
-      - MARIADB_ROOT_PASSWORD=root
-      - MARIADB_USER=andy
-      - MARIADB_PASSWORD=root
-      - MARIADB_DATABASE=Jeu
+      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
+      - MARIADB_USER=${MARIADB_USER}
+      - MARIADB_PASSWORD=${MARIADB_PASSWORD}
+      - MARIADB_DATABASE=${MARIADB_DATABASE}
     ports:
       - 3306:3306
     volumes:
