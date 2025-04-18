@@ -12,11 +12,11 @@ services:
     container_name: c_mariadb
 
   monapache:
-    image: apache
+    image: httpd:latest
     volumes:
-      - ./TP-info-411/site:/var/www/html
+      - /var/www/html:/usr/local/apache2/htdocs  # Monte le répertoire local dans le conteneur
     ports:
-      - 8088:80
+      - 8088:80  # Mappe le port 8088 de l'hôte au port 80 du conteneur
     container_name: c_monapache
 
   monubuntu:
