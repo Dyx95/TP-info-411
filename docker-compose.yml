@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   mariadb:
     image: mariadb
@@ -7,21 +9,17 @@ services:
       - MARIADB_PASSWORD=${MARIADB_PASSWORD}
       - MARIADB_DATABASE=${MARIADB_DATABASE}
     volumes:
-      - ./sql:/docker-entrypoint-initdb.d
-      - ./bd_data:/var/lib/mysql/mariadb
+      - ./TP-info-411/sql:/docker-entrypoint-initdb.d
+      - ./TP-info-411/bd_data:/var/lib/mysql
     container_name: c_mariadb
 
   monapache:
-    image: apache
-    volumes:
-      - ./TP-info-411/site:/var/www/html
+    image: httpd:latest
     ports:
       - 8088:80
+    volumes:
+      - ./TP-info-411/site:/var/www/html
     container_name: c_monapache
-
-  monubuntu:
-    image: ubuntu
-    container_name: c_monubuntu
 
   phpmyadmin:
     image: phpmyadmin
