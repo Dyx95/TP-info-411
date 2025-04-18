@@ -13,7 +13,7 @@ services:
       - /c/Users/andyl/OneDrive/Documents/université/S4/Info411/TP-info-411/bd_data/:/var/lib/mysql/mariadb
     container_name: c_mariadb
   monapache:
-    image: apache
+    image: httpd:latest
     volumes:
       - /c/Users/andyl/OneDrive/Documents/université/S4/Info411/TP-info-411/site:/var/www/html
     ports:
