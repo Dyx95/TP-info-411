@@ -14,7 +14,7 @@ services:
   monapache:
     image: apache
     volumes:
-      - ./site:/var/www/html
+      - ./TP-info-411/site:/var/www/html
     ports:
       - 8088:80
     container_name: c_monapache
