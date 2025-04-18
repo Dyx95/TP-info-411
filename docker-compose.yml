@@ -14,7 +14,7 @@ services:
   monapache:
     image: httpd:latest
     volumes:
-      - /var/www/html:/usr/local/apache2/htdocs  # Monte le répertoire local dans le conteneur
+      - /var/www/html/sololeveling.info411.site/TP-info-411/site:/usr/local/apache2/htdocs  # Correct le chemin ici
     ports:
       - 8088:80  # Mappe le port 8088 de l'hôte au port 80 du conteneur
     container_name: c_monapache
