@@ -12,9 +12,9 @@ services:
     container_name: c_mariadb
 
   monapache:
-    image: dyx95/apache
+    image: apache
     volumes:
-      - ./TP-info-411/site:/usr/local/apache2/htdocs
+      - .:/var/www/html
     ports:
       - 8088:80
     container_name: c_monapache
