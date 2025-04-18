@@ -17,7 +17,7 @@ services:
     volumes:
       - /c/Users/andyl/OneDrive/Documents/université/S4/Info411/TP-info-411/site:/var/www/html
     ports:
-      - 8080:80
+      - 8088:80
     container_name: c_monapache
   monubuntu:
     image: ubuntu
@@ -27,5 +27,5 @@ services:
     environment:
       - PMA_HOST=mariadb
     ports:
-      - 8081:80
+      - 8089:80
     container_name: c_monphpmyadmin
