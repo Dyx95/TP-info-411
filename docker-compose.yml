@@ -12,9 +12,9 @@ services:
     container_name: c_mariadb
 
   monapache:
-    image: httpd:latest
+    image: apache
     volumes:
-      - /var/www/html/sololeveling.info411.site/TP-info-411/site:/usr/local/apache2/htdocs
+      - ./TP-info-411/site:/usr/local/apache2/htdocs
     ports:
       - 8088:80
     container_name: c_monapache
