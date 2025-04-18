@@ -12,7 +12,7 @@ services:
     container_name: c_mariadb
 
   monapache:
-    image: apache
+    image: dyx95/apache
     volumes:
       - ./TP-info-411/site:/usr/local/apache2/htdocs
     ports:
