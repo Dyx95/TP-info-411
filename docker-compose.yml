@@ -7,7 +7,7 @@ services:
       - MARIADB_PASSWORD=${MARIADB_PASSWORD}
       - MARIADB_DATABASE=${MARIADB_DATABASE}
     ports:
-      - 3306:3306
+      - 3307:3306
     volumes:
       - /c/Users/andyl/OneDrive/Documents/université/S4/Info411/TP-info-411/sql:/docker-entrypoint-initdb.d
       - /c/Users/andyl/OneDrive/Documents/université/S4/Info411/TP-info-411/bd_data/:/var/lib/mysql/mariadb
