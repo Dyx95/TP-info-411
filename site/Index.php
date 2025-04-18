@@ -14,7 +14,7 @@
                 <img src="./img/homer_singe.jpg" alt="Logo du site">
             </div>
             <div class="player-info">
-                <span class="player-name">NOOB</span>
+                <span class="player-name">AYOUB</span>
                 <button id="profile-btn" class="profile-btn">🧑‍💻</button>
             </div>
         </header>
