@@ -12,7 +12,7 @@ services:
     container_name: c_mariadb
 
   monapache:
-    image: 
+    image: httpd:latest
     volumes:
       - ./TP-info-411/site:/var/www/html
     ports:
