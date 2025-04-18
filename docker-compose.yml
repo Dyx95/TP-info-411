@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   mariadb:
     image: mariadb
@@ -14,9 +12,9 @@ services:
     container_name: c_mariadb
 
   monapache:
-    image: php:8.3-apache
+    image: httpd:latest
     volumes:
-      - ./TP-info-411/site:/usr/local/apache2/htdocs  # Utilisation d'un chemin relatif
+      - /var/www/html/sololeveling.info411.site/TP-info-411/site:/usr/local/apache2/htdocs
     ports:
       - 8088:80
     container_name: c_monapache
