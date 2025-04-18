@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   mariadb:
     image: mariadb
@@ -12,11 +14,11 @@ services:
     container_name: c_mariadb
 
   monapache:
-    image: apache
+    image: php:8.3-apache  # Utilisation de l'image php:8.3-apache pour Apache + PHP
     volumes:
-      - .:/var/www/html
+      - /var/www/html/sololeveling.info411.site/TP-info-411/site:/var/www/html  # Correction du répertoire source pour correspondre à /var/www/html dans l'image
     ports:
-      - 8088:80
+      - 8088:80  # Expose le port 8088 pour accéder à Apache via HTTP
     container_name: c_monapache
 
   monubuntu:
